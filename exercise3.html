@@ -26,7 +26,7 @@
         const id = parseInt(input.value);
         const data = await retrieveData();
         input.value = "";
-        if (id < 1 || id > 30) {
+        if (!(id >= 1) || !(id <= 30)) {
           label.textContent = "No users were found with the provided User_ID";
         } else {
           data.forEach((element) => {
