@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab5 - Exercise 1</title>
+  </head>
+  <body>
+    <input type="text" id="textInput" placeholder="Enter user number (1-30)" />
+    <label id="textLabel"></label>
+    <button id="redButton">Red</button>
+    <button id="blueButton">Blue</button>
+    <button id="greenButton">Green</button>
+    <button id="orangeButton">Orange</button>
+    <button id="purpleButton">Purple</button>
+  </body>
+  <script type="text/javascript">
+    const input = document.getElementById("textInput");
+    const label = document.getElementById("textLabel");
+    const red = document.getElementById("redButton");
+    const blue = document.getElementById("blueButton");
+    const green = document.getElementById("greenButton");
+    const orange = document.getElementById("orangeButton");
+    const purple = document.getElementById("purpleButton");
+
+    input.addEventListener("keypress", async (e) => {
+      if (e.key == "Enter") {
+        const id = parseInt(input.value);
+        const data = await retrieveData();
+        if (id < 1 || id > 30) {
+          label.textContent = "No users were found with the provided User_ID";
+        } else {
+          data.forEach((element) => {
+            if (element.id == id) {
+              label.textContent = `ID: ${element.id}, Name: ${element.first_name}, Group: ${element.user_group} `;
+            }
+          });
+        }
+      }
+    });
+
+    red.addEventListener("click", () => {
+      label.style.color = "red";
+    });
+
+    blue.addEventListener("click", () => {
+      label.style.color = "blue";
+    });
+
+    green.addEventListener("click", () => {
+      label.style.color = "green";
+    });
+
+    orange.addEventListener("click", () => {
+      label.style.color = "orange";
+    });
+
+    purple.addEventListener("click", () => {
+      label.style.color = "purple";
+    });
+
+    async function retrieveData() {
+      try {
+        const response = await fetch(
+          "https://67c1fae561d8935867e4f19a.mockapi.io/users_api"
+        );
+
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+  </script>
+</html>
