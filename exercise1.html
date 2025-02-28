@@ -14,8 +14,39 @@ here..."/>
     <button id="purpleButton">Purple</button> 
 </body> 
 <script type="text/javascript"> 
-    button.addEventListener('click', () => {
-        alert('Button was clicked!');
+    const input = document.getElementById("textInput");
+    const label = document.getElementById("textLabel");
+    const red = document.getElementById("redButton");
+    const blue = document.getElementById("blueButton");
+    const green = document.getElementById("greenButton");
+    const orange = document.getElementById("orangeButton");
+    const purple = document.getElementById("purpleButton");
+
+    input.addEventListener("keypress", (e) => {
+        if (e.key == "Enter") {
+            label.textContent = input.value;
+            input.value = "";
+        }
+});
+
+red.addEventListener("click", () => {
+    label.style.color = "red";
+});
+
+blue.addEventListener("click", () => {
+    label.style.color = "blue";
+});
+
+green.addEventListener("click", () => {
+    label.style.color = "green";
+});
+
+orange.addEventListener("click", () => {
+    label.style.color = "orange";
+});
+
+purple.addEventListener("click", () => {
+    label.style.color = "purple";
 });
 </script> 
 </html>
